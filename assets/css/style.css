@@ -1,0 +1,132 @@
+body{
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+.clear {
+	clear:both;	
+}
+.ace-nav>li.light-blue:hover{
+	background: #62a8d1 !important;
+}
+.ace-nav>li.light-blue{
+	background: none !important;
+}
+.ace-nav>li {
+	background: none !important;
+}
+.dropdown-menu.dropdown-closer {
+	top: 100% !important;
+}
+.navbar .nav>li>a {
+	font-size:18px !important;
+	background: #438eb9 !important;
+}
+.navbar .nav>li>a:hover, .navbar .nav>li>a:focus {
+	background: #73B2D6 !important;
+}
+.sidebar {
+	width:250px !important;
+}
+.main-content {
+	margin-left: 251px !important;
+	min-height:630px !important;
+}
+.page-content {
+	margin: 5px 50px 20px !important;
+}
+.btn {
+	border-radius: 4px !important;
+	-moz-border-radius:4px !important;
+	-webkit-border-radius:4px !important;
+}
+.table thead tr th {
+	background: #ffffff !important;
+}
+.action-nav {
+	margin: 0 !important;
+}
+.action-a {
+	line-height: 0 !important;
+	float: right !important;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+	background: #ffffff !important;
+} 
+.success {
+	color: #87b87f !important;
+}
+.danger {
+	color: #d15b47 !important;
+}
+.info {
+	color: #2f96b4 !important;
+}
+.primary {
+	color: #2283c5;
+}
+.purple {
+	color: #9585bf;
+}
+.light {
+	color: #d9d9d9;
+}
+.warning {
+	color: #ffb752 !important;
+}
+.dropdown-menu>li>a:hover {
+	color: #333333 !important;
+}
+.fl {
+	float: left !important;
+}
+.fr {
+	float: right !important;
+}
+.parsley-error-list {
+	color: #B94A48;
+	font-size: 11px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.require {
+	color: #D43F3A;
+	margin-left: 5px;
+}
+.mr {
+	margin-right: 5px !important;
+}
+.header-help{
+	color: #999;
+	font-size: 12px;
+	margin-left: 8px;
+}
+.input-help {
+	color: #999;
+	font-size: 12px;
+	font-style: italic;
+}
+.tbldetail{
+	width: 100%;	
+}
+.tbldetail th {
+	text-align: left;
+	max-width: 30px;
+}
+.tbldetail>tbody>tr>td {
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+}
+.chzn-container-single .chzn-single {
+	padding: 2px 0px 3px 8px !important;
+}
+.chzn-container-single .chzn-default {
+	border-radius: 0px !important;
+	height: 26px !important;
+}
+.chzn-container-single .chzn-single {
+	border-radius: 0px !important;
+}
+.chzn-container {
+	width: 83% !important;
+}
