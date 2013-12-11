@@ -4,6 +4,9 @@ body{
 .clear {
 	clear:both;	
 }
+a:hover {
+	text-decoration: none !important;
+}
 .ace-nav>li.light-blue:hover{
 	background: #62a8d1 !important;
 }

@@ -10,9 +10,8 @@
     <div class="breadcrumbs" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home home-icon"></i>
-                <a href="/">Home</a>
-        
+                <i class="icon-dashboard"></i>
+                <a href="/">Dashboard</a>
                 <span class="divider">
                     <i class="icon-angle-right arrow-icon"></i>
                 </span>
@@ -58,11 +57,11 @@
             <?php
                 if(isset($_POST['btnsearch'])){
                     $txtsearch = trim($_POST['txtsearch']);
-                    $sql = "SELECT cu.*,(CASE WHEN sa.payment_date IS NOT NULL THEN 'Bought' ELSE 'Free' END) as cus_status
+                    $sql = "SELECT cu.*,(CASE WHEN sa.sale_date IS NOT NULL THEN 'Bought' ELSE 'Free' END) as cus_status
                             FROM tbl_customer cu
                             LEFT JOIN tbl_sale sa on (sa.customer_id = cu.customer_id) WHERE CONCAT_WS(' OR ', cu.customer_id, cu.family_name, cu.given_name, cu.phone_number, cu.current_address) LIKE '%". $txtsearch ."%' GROUP BY customer_id ORDER BY customer_id";
                 }elseif(isset($_POST['viewall']) || !isset($_POST['txtsearch'])){
-                    $sql = "SELECT cu.*,(CASE WHEN sa.payment_date IS NOT NULL THEN 'Bought' ELSE 'Free' END) as cus_status
+                    $sql = "SELECT cu.*,(CASE WHEN sa.sale_date IS NOT NULL THEN 'Bought' ELSE 'Free' END) as cus_status
                             FROM tbl_customer cu
                             LEFT JOIN tbl_sale sa on (sa.customer_id = cu.customer_id) GROUP BY customer_id ORDER BY customer_id";
                 }

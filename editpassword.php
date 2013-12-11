@@ -75,9 +75,8 @@
     <div class="breadcrumbs" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home home-icon"></i>
-                <a href="/">Home</a>
-        
+                <i class="icon-dashboard"></i>
+                <a href="/">Dashboard</a>
                 <span class="divider">
                     <i class="icon-angle-right arrow-icon"></i>
                 </span>

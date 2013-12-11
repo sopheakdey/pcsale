@@ -82,8 +82,8 @@
     <div class="breadcrumbs" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home home-icon"></i>
-                <a href="/">Home</a>
+                <i class="icon-dashboard"></i>
+                <a href="/">Dashboard</a>
         
                 <span class="divider">
                     <i class="icon-angle-right arrow-icon"></i>
@@ -112,7 +112,7 @@
                 </tr>
                 <tr>
                     <th>Customer Name</th>
-                    <td><?php echo ucwords($sale['family_name'].' '.$sale['given_name']) ?></td>
+                    <td><a href="detailcustomer.php?page=detailcustomer&id=<?php echo $sale["customer_id"] ?>"><?php echo ucwords($sale['family_name'].' '.$sale['given_name']) ?></a></td>
                 </tr>
                 <tr>
                     <th>Prodcut Name</th>

@@ -81,9 +81,8 @@
     <div class="breadcrumbs" id="breadcrumbs">
         <ul class="breadcrumb">
             <li>
-                <i class="icon-home home-icon"></i>
-                <a href="/">Home</a>
-        
+                <i class="icon-dashboard"></i>
+                <a href="/">Dashboard</a>
                 <span class="divider">
                     <i class="icon-angle-right arrow-icon"></i>
                 </span>
@@ -158,7 +157,7 @@
 	        	<div>
 	        		<div class="span6">
 			        	<div class="control-group">
-							<a class="btn btn-danger btn-mini" href="customer.php?page=customer"><i class="icon-reply mr"></i>Back to list</a>
+							<a class="btn btn-danger btn-mini" href="product.php?page=product"><i class="icon-reply mr"></i>Back to list</a>
 							<button type="submit" class="btn btn-primary btn-mini" id="btnsave" name="btnsave"><i class="icon-save mr"></i>Save</button>
 							
 						<div>
@@ -170,17 +169,21 @@
     </div>
 </div>
 <?php
-	
+	$sql3 = "SELECT MAX(sale_id) as sale_id FROM tbl_sale";
+	$res3 = $db->query($sql3);
+	while ($rows = $res3->fetch_array(MYSQLI_ASSOC)) {
+		$sale_id = $rows['sale_id'] + 1;
+	}
+
 	if(isset($_POST['btnsave'])){
 		$pid = $_POST['pid'];
 		$price = $_POST['price'];
 		$qty = $_POST['qty'];
 		$cid = $_POST['cid'];
 		$sale_date = $_POST['sale_date'];
-
 		$sql = "INSERT INTO tbl_sale(product_id, customer_id, sale_price, sale_quantity, sale_date) VALUES('".$pid."', '".$cid."','". $price."','".$qty."', '".$sale_date."')";
 		$db->query($sql);
-		header('Location: sale.php?page=sale');
+		header('Location: detailsale.php?page=detailsale&id='. $sale_id);
 	}
 ?> 
 
