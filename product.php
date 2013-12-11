@@ -48,11 +48,9 @@
             <tr style="border-top:none !important">
                 <th style="width:10%">ID</th>
                 <th>Product Name</th>
-                <th>Stock Quantity</th>
+                <th>Product Quantity</th>
                 <th>Price</th>
                 <th>Model Name</th>
-                <th>Stock Status</th>
-                <th>Status</th>
                 <th style="text-align:right">Action</th>
             </tr>
             </thead>
@@ -60,16 +58,14 @@
             <?php
                 if(isset($_POST['btnsearch'])){
                     $txtsearch = trim($_POST['txtsearch']);
-                    $sql = "SELECT p.*,m.model_name,
-                    (CASE WHEN p.quantity = 0 THEN 'Not Available' ELSE 'Available' END) as stock_status,
-                    (CASE WHEN sa.payment_date IS NOT NULL THEN 'Saled' ELSE 'Free' END) as pro_status
+                    $sql = "SELECT p.*,m.model_name,sa.sale_date as sale_date,
+                    (p.quantity - SUM(sa.sale_quantity)) as remain_product_quantity
                     FROM tbl_product p 
                     LEFT JOIN tbl_model m ON m.model_id = p.model_id 
                     LEFT JOIN tbl_sale sa on sa.product_id = p.product_id  WHERE CONCAT_WS(' OR ', p.product_id, p.product_name, p.quantity, p.price, m.model_name) LIKE '%". $txtsearch ."%' GROUP BY p.product_id ORDER BY p.product_id";
                 }elseif(isset($_POST['viewall']) || !isset($_POST['txtsearch'])){
-                    $sql = "SELECT p.*,m.model_name,
-                    (CASE WHEN p.quantity = 0 THEN 'Not Available' ELSE 'Available' END) as stock_status,
-                    (CASE WHEN sa.payment_date IS NOT NULL THEN 'Saled' ELSE 'Free' END) as pro_status
+                    $sql = "SELECT p.*,m.model_name,sa.sale_date as sale_date,
+                    (p.quantity - SUM(sa.sale_quantity)) as remain_product_quantity
                     FROM tbl_product p 
                     LEFT JOIN tbl_model m ON m.model_id = p.model_id 
                     LEFT JOIN tbl_sale sa on sa.product_id = p.product_id GROUP BY p.product_id ORDER BY p.product_id";
@@ -82,8 +78,6 @@
                         echo '<td>'.ucwords($rows['quantity']).'</td>' ;
                         echo '<td>$ '.$rows['price'].'</td>' ;
                         echo '<td>'.ucwords($rows['model_name']).'</td>' ;
-                        echo '<td>'.ucwords($rows['stock_status']).'</td>' ;
-                        echo '<td>'.ucwords($rows['pro_status']).'</td>' ;
                 ?>           <td> <ul class="nav ace-nav action-nav">
                             <li class="light-blue" style="background:#fff !important">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle action-a" style="padding:0 !important">
@@ -91,7 +85,7 @@
                             </a> 
                             <div class="clear"></div>
                             <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-                               <?php if($rows['stock_status']=='Available'){ ?>
+                               <?php if($rows['remain_product_quantity']!=0 || $rows['remain_product_quantity'] == NULL){ ?>
                                <li>
                                     <a href="newsale.php?page=newsale&id=<?php echo $rows["product_id"] ?>" class="warning">
                                         <i class="icon-usd"></i>
@@ -101,12 +95,19 @@
                                 <li class="divider"></li>
                                 <?php } ?>
                                 <li>
+                                    <a href="detailproduct.php?page=detailproduct&id=<?php echo $rows["product_id"] ?>" class="info">
+                                        <i class="icon-list"></i>
+                                        Detail
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
                                     <a href="editproduct.php?page=editproduct&id=<?php echo $rows["product_id"] ?>" class="success">
                                         <i class="icon-edit"></i>
                                         Edit
                                     </a>
                                 </li>
-                                <?php if($rows['pro_status']=='Free'){ ?>
+                                <?php if($rows['remain_product_quantity'] == NULL){ ?>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="?id=<?php echo $rows["product_id"] ?>" class="danger" onclick="return confirm('Are you sure to want to delete?')">

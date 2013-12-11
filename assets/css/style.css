@@ -113,7 +113,7 @@ a:hover {
 }
 .tbldetail th {
 	text-align: left;
-	max-width: 30px;
+	max-width: 50px;
 }
 .tbldetail>tbody>tr>td {
 	border-bottom: 1px solid #ddd;

@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                     <th>Prodcut Name</th>
-                    <td><?php echo ucwords($sale['product_name']) ?></td>
+                    <td><a href="detailproduct.php?page=detailproduct&id=<?php echo $sale["product_id"] ?>"><?php echo ucwords($sale['product_name']) ?></a></td>
                 </tr>
                 <tr>
                     <th>Model Name</th>
